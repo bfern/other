@@ -13,14 +13,14 @@ results_long <- bind_rows(
       defence = away,
       goals = home_goals
     ) %>%
-    select(attack, defence, goals),
+    dplyr::select(attack, defence, goals),
   results %>%
     rename(
       attack = away,
       defence = home,
       goals = away_goals
     ) %>%
-    select(attack, defence, goals),  
+    dplyr::select(attack, defence, goals),  
 )
 
 
