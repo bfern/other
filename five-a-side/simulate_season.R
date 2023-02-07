@@ -1,17 +1,9 @@
 source("five-a-side/script.R")
 set.seed(1)
 
-teams <- c(
-  "Prosecco Bois", "New Levels FC", "Fishermans Friends", "Chook Chook Albion", "Legacy Football",
-  "Stevos Steiners", "Contrarian FC", "Penalty Clause", "Wolves of Warren St"
-)
+current_table <- read_csv("five-a-side/data/table.csv")
 
-current_table <- tibble(
-  position = 1:9,
-  team_name = teams,
-  points = c(12, 9, 9, 9, 9, 4, 3, 3, 1),
-  goal_difference = c(18, 10, 10, 6, -3, -5, -9, -14, -13)
-)
+teams <- current_table$team_name
 
 num_sims <- 10000
 
@@ -50,8 +42,7 @@ for (i in 1:num_sims) {
   }
   simulated_table$random_number <- runif(9)
   simulated_table <- simulated_table %>%
-    arrange(desc(points), desc(goal_difference), desc(random_number)) %>%
-    mutate(position = 1:n())
+    arrange(desc(points), desc(goal_difference), desc(random_number))
   for (j in 1:nrow(simulated_table)) {
     final_league_positions[[simulated_table$team_name[j]]] <- c(final_league_positions[[simulated_table$team_name[j]]], j)
   }
