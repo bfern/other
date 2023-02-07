@@ -1,4 +1,5 @@
 source("five-a-side/script.R")
+set.seed(1)
 
 teams <- c(
   "Prosecco Bois", "New Levels FC", "Fishermans Friends", "Chook Chook Albion", "Legacy Football",
@@ -67,3 +68,5 @@ simulation_grid <- final_league_positions_df %>%
   pivot_wider(names_from = position, values_from = prop)
 
 simulation_grid[is.na(simulation_grid)] <- 0
+
+print(simulation_grid)
