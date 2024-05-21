@@ -55,10 +55,11 @@ def main():
 
     username = "pickybits"
 
-    latest_post = check_new_posts(username)
-    previous_latest_post = None
     try_to_send_email = True
     while try_to_send_email:
+        
+        latest_post = check_new_posts(username)
+        previous_latest_post = None        
         
         if (previous_latest_post is not None) and (previous_latest_post != latest_post):
 
